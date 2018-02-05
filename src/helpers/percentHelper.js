@@ -12,7 +12,7 @@ export default function getPercents (transfer, options) {
     }
     result.push({
       date: item.end,
-      percents: total
+      percents: Math.round(total*100)/100
     })
   }
   return result
@@ -45,7 +45,7 @@ function convertTransfers(transfers) {
   let result = []
   let sum = 0
   for(let i = 0; i < transfers.length; i++) {
-    sum += parseInt(transfers[i].value) * (transfers[i].type === 'debt' ? 1 : -1)
+    sum += parseInt(transfers[i].value) * (transfers[i].type.toLowerCase() === 'debt' ? 1 : -1)
     if (transfers[i + 1] !== undefined) {
       result.push({
         value: sum,

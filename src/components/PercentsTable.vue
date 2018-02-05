@@ -32,16 +32,13 @@
     },
     computed: {
       debtData () {
-        console.log("data")
         return this.$store.getters.debtData
       },
       debtOptions () {
-        console.log("opt")
         return this.$store.getters.debtOptions
       },
       percentsData () {
         if (this.debtOptions.date !== "" && this.debtOptions.percents !== "") {
-          console.log(this.debtOptions, 'options')
           return percentHelper(this.debtData, this.debtOptions)
         }
         return []

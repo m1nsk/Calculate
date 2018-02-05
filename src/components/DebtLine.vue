@@ -23,10 +23,10 @@
         return date.toLocaleString('ru', options)
       },
       debt () {
-        return this.data.type === "debt" ? this.data.value : ""
+        return this.data.type.toLowerCase() === "debt" ? this.data.value : ""
       },
       repayment () {
-        return this.data.type === "repayment" ? this.data.value : ""
+        return this.data.type.toLowerCase() === "repayment" ? this.data.value : ""
       }
     }
   }

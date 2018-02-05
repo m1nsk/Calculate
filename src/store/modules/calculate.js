@@ -1,3 +1,5 @@
+import { getData } from '@/api/index'
+
 // initial state
 const state = {
   debtData: [
@@ -62,12 +64,19 @@ const state = {
 
 // getters
 const getters = {
-  debtData: state => state.debtData2.sort((a,b) => new Date(a.date) - new Date(b.date)),
+  debtData: state => state.debtData.sort((a,b) => new Date(a.date) - new Date(b.date)),
   debtOptions: state => state.debtOptions
 }
 
 // actions
 const actions = {
+  loadData ({ commit }, id) {
+    console.log(id,'id')
+    let promise = getData(id)
+    promise.then((response) => {
+      commit('setData', response.data)
+    })
+  }
 }
 
 // mutations
@@ -76,6 +85,17 @@ const mutations = {
     state.debtOptions.date = options.date
     state.debtOptions.percents = options.percents
   },
+  setData (state, data) {
+    console.log(state.debtData, 'dd')
+    while (state.debtData.length) {
+      state.debtData.pop()
+    }
+    state.debtData.length = 0
+    for (let item of data) {
+      state.debtData.push(item.fields)
+    }
+    console.log(state.debtData, 'dd')
+  }
 }
 
 export default {

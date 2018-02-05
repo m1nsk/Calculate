@@ -39,10 +39,10 @@
         return this.$store.getters.debtData
       },
       debtSum () {
-        return this.debtData.filter(item => item.type === "debt").reduce((sum, item) => sum + parseInt(item.value), 0)
+        return this.debtData.filter(item => item.type.toLowerCase() === "debt").reduce((sum, item) => sum + parseInt(item.value), 0)
       },
       repayment () {
-        return this.debtData.filter(item => item.type === "repayment").reduce((sum, item) => sum + parseInt(item.value), 0)
+        return this.debtData.filter(item => item.type.toLowerCase() === "repayment").reduce((sum, item) => sum + parseInt(item.value), 0)
       }
     }
   }

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <input type="button" value="user1" @click=onUserClicked(1)>
+    <input type="button" value="user2" @click=onUserClicked(2)>
     <debt-table style="float: left; width: 70%"></debt-table>
     <calc-options style="float: left; width: 25%; padding: 20px"></calc-options>
     <percents-table style="width: 70%; padding-top: 300px"></percents-table>
@@ -20,6 +22,11 @@
     name: 'debt',
     data () {
       return {
+      }
+    },
+    methods: {
+      onUserClicked (id) {
+        this.$store.dispatch('loadData', id)
       }
     }
   }
