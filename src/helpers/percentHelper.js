@@ -6,6 +6,8 @@ export default function getPercents (transfer, options) {
     for(let ti of transferIntervals) {
       if (inTransferArea(item.start, item.end, ti)) {
         total += countTotalInTransfer(item.start, item.end, ti, options)
+      } else if (total > 0){
+        break
       }
     }
     result.push({
@@ -83,10 +85,6 @@ function* monthGenerator(start, end, options) {
     _end = new Date(end.getFullYear(), end.getMonth() + 1, 1)
   }
   while(_start < _end) {
-    console.log({
-      start: getPrevPayday(_start, options),
-      end: getCurrentPayday(_start, options)
-    });
     yield {
       start: getPrevPayday(_start, options),
       end: getCurrentPayday(_start, options)
